@@ -31,6 +31,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -48,6 +49,7 @@ const resolvers = {
 
       return { token, user };
     },
+    
 
     addThought: async (parent, { thoughtText }, context) => {
       if (context.user) {

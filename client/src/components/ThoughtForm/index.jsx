@@ -50,16 +50,16 @@ const ThoughtForm = () => {
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
+      <h3>Make a Blog!</h3>
 
       {Auth.loggedIn() ? (
         <>
           <p
             className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
+              characterCount === 1000 || error ? 'text-danger' : ''
             }`}
           >
-            Character Count: {characterCount}/280
+            Character Count: {characterCount}/1000
           </p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
@@ -68,7 +68,7 @@ const ThoughtForm = () => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="thoughtText"
-                placeholder="Here's a new thought..."
+                placeholder="Type your blog here..."
                 value={thoughtText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
@@ -78,19 +78,19 @@ const ThoughtForm = () => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Thought
+                Add Blog Post
               </button>
             </div>
             {error && (
               <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
+                
               </div>
             )}
           </form>
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+        You must type something to Post!
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
