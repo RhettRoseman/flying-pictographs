@@ -34,6 +34,12 @@ const ThoughtList = ({
                   <span style={{ fontSize: '1rem' }}>
                     You posted this blog on {thought.createdAt}
                   </span>
+                  <div classname="">
+                    <button classname="btn btn-raised btn-danger">
+                      Delete
+                    </button>
+
+                  </div>
                 </>
               )}
             </h4>
