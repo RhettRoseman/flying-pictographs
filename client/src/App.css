@@ -1034,7 +1034,7 @@ a:hover {
 }
 
 .btn.btn-info {
-  background-color: green;
+  background-color: lightskyblue;
   color: #ffffff;
 }
 
@@ -1043,7 +1043,7 @@ a:hover {
 }
 
 .btn.btn-light {
-  background-color: green;
+  background-color: #87cefa;
   color: white;
 }
 
