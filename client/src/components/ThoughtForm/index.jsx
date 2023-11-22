@@ -90,8 +90,8 @@ const ThoughtForm = () => {
         </>
       ) : (
         <p>
-        You must type something to Post!
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+        You must type something to Post! Please{' '}
+          <Link to="/login">Login</Link> or <Link to="/signup">SignUp.</Link>
         </p>
       )}
     </div>

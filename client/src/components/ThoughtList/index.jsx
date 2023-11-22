@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const ThoughtList = ({
   thoughts,
@@ -12,7 +12,7 @@ const ThoughtList = ({
 
   return (
     <div>
-      <div></div>                                 
+      <div></div>
       {showTitle && <h3>{title}</h3>}
       {thoughts &&
         thoughts.map((thought) => (
@@ -24,21 +24,19 @@ const ThoughtList = ({
                   to={`/profiles/${thought.thoughtAuthor}`}
                 >
                   {thought.thoughtAuthor} <br />
-                  <span style={{ fontSize: '1rem' }}>
+                  <span style={{ fontSize: "1rem" }}>
                     Made Blog Post {thought.createdAt}
                   </span>
                 </Link>
-                
               ) : (
                 <>
-                  <span style={{ fontSize: '1rem' }}>
+                  <span style={{ fontSize: "1rem" }}>
                     You posted this blog on {thought.createdAt}
                   </span>
                   <div classname="">
                     <button className="btn btn-raised btn-danger btn-large">
                       Delete
                     </button>
-
                   </div>
                 </>
               )}
