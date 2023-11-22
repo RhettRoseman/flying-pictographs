@@ -6,9 +6,14 @@
 2. post have photo and caption
 3. Favourite a photo  they posited
 
-# DB Modeling
+# DB Modeling and Seeding
 - Users/Photographers [user_id,name,....]
 - Posts [user_id,image,caption]
 - Comments   [post_id,user_id,message]
 - Favourites [post_id, user_id]
 
+# Graphql Queries and Mutations
+- users [signin,signout,getProfile,updateProfile]
+- Posts [crud]
+- Comments [crud]
+- Favourites [crud]
