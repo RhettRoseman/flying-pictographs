@@ -35,7 +35,7 @@ const ThoughtList = ({
                     You posted this blog on {thought.createdAt}
                   </span>
                   <div classname="">
-                    <button classname="btn btn-raised btn-danger">
+                    <button className="btn btn-raised btn-danger btn-large">
                       Delete
                     </button>
 
