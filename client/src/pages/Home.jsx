@@ -1,71 +1,50 @@
+import { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
 import ThoughtList from '../components/ThoughtList';
-import ThoughtForm from '../components/ThoughtForm';
+import PhotoList from '../components/PhotoList';
 
-import { QUERY_THOUGHTS } from '../utils/queries';
+import { QUERY_THOUGHTS, QUERY_PHOTOS } from '../utils/queries';
 
-// const Home = () => {
-//   const { loading, data } = useQuery(QUERY_THOUGHTS);
-//   const thoughts = data?.thoughts || [];
-
-//   return (
-//     <main>
-//       <div className="flex-row justify-center">
-//         <div
-//           className="col-12 col-md-10 mb-3 p-3"
-//           style={{ border: '1px dotted #1a1a1a' }}
-//         >
-//           <ThoughtForm />
-//         </div>
-//         <div className="col-12 col-md-8 mb-3">
-//           {loading ? (
-//             <div>Loading...</div>
-//           ) : (
-//             <ThoughtList
-//               thoughts={thoughts}
-//               title="Some Feed for Thought(s)..."
-//             />
-//           )}
-//         </div>
-//       </div>
-//     </main>
-//   );
-// };
-
-// export default Home;
-
-
-const fakePost = new Array(10).fill(null).map(() => {
-  return {
-    img: 'some fake img.jpg',
-    caption: 'some caption',
-    comments: ['c1', 'c2', 'c3']
-  }
-})
 const Home = () => {
-  return <div>
-    <h2>Photos</h2>
-
-    {/* show img cap and comment of post */}
-    {fakePost.map((post, index) => {
-      return (
-        <div key={index}>
-          <img src={post.img} alt={post.caption} />
-          <p>{post.caption}</p>
-          {/* show comments with each commentt wrapped in a border all around */}
-          {post.comments.map((comment, index) => {
-            return (
-              <div key={index}>
-                <p>{comment}</p>
-              </div>
-            )
-          })}
-          <textarea name="" id="" cols="30" rows="1"></textarea>
+  const { loading:thoughtLoading, data:thoughtData , refetch} = useQuery(QUERY_THOUGHTS);
+  const { loading:photoLoading, data:photoData } = useQuery(QUERY_PHOTOS);
+  const thoughts = thoughtData?.thoughts || [];
+  const photos = photoData?.photos || [];
+  useEffect(()=>{
+    refetch()
+  }, [])
+  return (
+    <main>
+      <div className="flex-row justify-center">
+        {/* <div
+          className="col-12 col-md-10 mb-3 p-3"
+          style={{ border: '1px dotted #1a1a1a' }}
+        >
+        </div> */}
+        <div className="col-12 col-md-10 mb-3">
+          {thoughtLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <ThoughtList
+              thoughts={thoughts}
+              title="Recent Thought Blogs"
+            />
+          )}
         </div>
-      )
-    })}
-  </div>
-}
+        {/* <div className="col-12 col-md-6 mb-3">
+          {photoLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <PhotoList
+              photos={photos}
+              title="Recent Photo Blogs"
+            />
+          )}
+        </div> */}
+      </div>
+    </main>
+  );
+};
 
-export default Home
+export default Home;

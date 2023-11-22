@@ -15,17 +15,18 @@ const Footer = () => {
           </button>
         )}
         <h4>
-          Made with{' '}
+          Made by{' '}
           <span
             className="emoji"
             role="img"
             aria-label="heart"
             aria-hidden="false"
           >
-            ❤️
+            
           </span>{' '}
-          by the Tech Thoughts team.
+          Group 5 Development ™
         </h4>
+        <p>A UNCC Bootcamp Project</p>
       </div>
     </footer>
   );

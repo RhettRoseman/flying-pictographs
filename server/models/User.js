@@ -25,6 +25,12 @@ const userSchema = new Schema({
       ref: 'Thought',
     },
   ],
+  photos: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Photo',
+    },
+  ],
 });
 
 userSchema.pre('save', async function (next) {

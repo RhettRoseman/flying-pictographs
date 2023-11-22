@@ -3,6 +3,8 @@ import { useQuery } from '@apollo/client';
 
 import ThoughtForm from '../components/ThoughtForm';
 import ThoughtList from '../components/ThoughtList';
+import PhotoForm from '../components/PhotoForm';
+import PhotoList from '../components/PhotoList';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 
@@ -47,16 +49,35 @@ const Profile = () => {
             title={`${user.username}'s thoughts...`}
             showTitle={false}
             showUsername={false}
+            username={userParam ?user.username:'You'}
           />
+          {!userParam && (
+            <div
+              className="col-12 col-md-12 mb-3 p-3"
+              style={{ border: '1px dotted #1a1a1a' }}
+            >
+              <ThoughtForm />
+            </div>
+          )}
         </div>
-        {!userParam && (
-          <div
-            className="col-12 col-md-10 mb-3 p-3"
-            style={{ border: '1px dotted #1a1a1a' }}
-          >
-            <ThoughtForm />
-          </div>
-        )}
+
+        <div className="col-12 col-md-10 mb-5">
+          <PhotoList
+            photos={user.photos}
+            title={`${user.username}'s photos...`}
+            showTitle={false}
+            showUsername={false}
+            username={userParam ?user.username:'You'}
+          />
+          {!userParam && (
+            <div
+              className="col-12 col-md-12 mb-3 p-3"
+              style={{ border: '1px dotted #1a1a1a' }}
+            >
+              <PhotoForm />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -7,6 +7,8 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
+import Photos from './pages/Photos';
+import SinglePhoto from './pages/SinglePhoto';
 import ErrorPage from './pages/ErrorPage';
 
 const router = createBrowserRouter([
@@ -33,7 +35,13 @@ const router = createBrowserRouter([
       }, {
         path: '/thoughts/:thoughtId',
         element: <SingleThought />
-      }
+      }, {
+        path: '/photos',
+        element: <Photos />
+      },{
+        path: '/photos/:photoId',
+        element: <SinglePhoto />
+      }, 
     ]
   },
 ]);

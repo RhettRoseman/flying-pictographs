@@ -5,12 +5,21 @@ const typeDefs = `
     email: String
     password: String
     thoughts: [Thought]!
+    photos: [Photo]!
   }
 
   type Thought {
     _id: ID
     thoughtText: String
     thoughtAuthor: String
+    createdAt: String
+    comments: [Comment]!
+  }
+
+  type Photo {
+    _id: ID
+    photoImage: String
+    photoAuthor: String
     createdAt: String
     comments: [Comment]!
   }
@@ -32,6 +41,9 @@ const typeDefs = `
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(thoughtId: ID!): Thought
+    photos(username: String): [Photo]
+    photo(photoId: ID!): Photo
+    userphotos: [Photo]
     me: User
   }
 
@@ -39,9 +51,12 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
+    addPhoto(photoImage: String!): Photo
+    addThoughtComment(thoughtId: ID!, commentText: String!): Thought
+    addPhotoComment(photoId: ID!, commentText: String!): Photo
     removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    removePhoto(photoId: ID!): Photo
+    removeComment(photoId: ID!, commentId: ID!): Photo
   }
 `;
 

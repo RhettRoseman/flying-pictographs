@@ -8,7 +8,7 @@
     "dev:client": "npm --prefix client run dev",
     "dev:server": "npm --prefix server run watch",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
-    "postinstall": "npm --prefix client install && npm --prefix server install",
+    "postinstall": "npm --prefix client install && npm --prefix server install  --force",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },

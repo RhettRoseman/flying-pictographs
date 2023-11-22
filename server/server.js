@@ -1,7 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
+const { graphqlUploadExpress } = require('graphql-upload');
 const { authMiddleware } = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -18,10 +20,12 @@ const server = new ApolloServer({
 const startApolloServer = async () => {
   await server.start();
 
-  app.use(express.urlencoded({ extended: false }));
+  // app.use(express.urlencoded({ extended: false }));
+  app.use(bodyParser.json({ limit: '10mb' }));
+  app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
   app.use(express.json());
 
-  app.use('/graphql', expressMiddleware(server, {
+  app.use('/graphql', graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }), expressMiddleware(server, {
     context: authMiddleware
   }));
 
@@ -42,4 +46,4 @@ const startApolloServer = async () => {
 };
 
 // Call the async function to start the server
-  startApolloServer();
+startApolloServer();

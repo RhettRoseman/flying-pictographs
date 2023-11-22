@@ -2,27 +2,39 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_THOUGHT_COMMENT, ADD_PHOTO_COMMENT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const CommentForm = ({ thoughtId }) => {
+const CommentForm = ({ thoughtId, photoId }) => {
   const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addComment, { error }] = useMutation(ADD_COMMENT);
+  const [addThoughtComment, { error:thoughtError }] = useMutation(ADD_THOUGHT_COMMENT);
+  const [addPhotoComment, { error:photoError }] = useMutation(ADD_PHOTO_COMMENT);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addComment({
-        variables: {
-          thoughtId,
-          commentText,
-          commentAuthor: Auth.getProfile().data.username,
-        },
-      });
+      if(thoughtId){
+        const { data } = await addThoughtComment({
+          variables: {
+            thoughtId,
+            commentText,
+            commentAuthor: Auth.getProfile().data.username,
+          },
+        });
+      }
+      else if(photoId){
+        const { data } = await addPhotoComment({
+          variables: {
+            photoId,
+            commentText,
+            commentAuthor: Auth.getProfile().data.username,
+          },
+        });
+      }
 
       setCommentText('');
     } catch (err) {
@@ -47,11 +59,12 @@ const CommentForm = ({ thoughtId }) => {
         <>
           <p
             className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
+              characterCount === 280 || (thoughtId&&thoughtError) || (photoId&&photoError)? 'text-danger' : ''
             }`}
           >
             Character Count: {characterCount}/280
-            {error && <span className="ml-2">{error.message}</span>}
+            {thoughtId&&thoughtError && <span className="ml-2">{thoughtError.message}</span>}
+            {photoId&&photoError && <span className="ml-2">{photoError.message}</span>}
           </p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
