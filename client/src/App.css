@@ -197,6 +197,7 @@ button,
   -webkit-appearance: button;
 }
 
+
 /**
  * Remove the inner border and padding in Firefox.
  */
@@ -463,6 +464,9 @@ a:hover {
 /* Margin - all sides */
 .m-0 {
   margin: 0 !important;
+  text-transform: uppercase;
+  color: black;
+  
 }
 
 .m-1 {
@@ -921,9 +925,7 @@ a:hover {
 }
 
 /* BACKGROUND UTILS */
-.bg-primary {
-  background-color: #2d3e50 !important;
-}
+
 
 .bg-info {
   background-color: #1bbc9b !important;
@@ -1032,21 +1034,21 @@ a:hover {
 }
 
 .btn.btn-info {
-  background-color: #1bbc9b;
+  background-color: green;
   color: #ffffff;
 }
 
 .btn.btn-info:hover {
-  background-color: #31e1bd;
+  background-color: gray;
 }
 
 .btn.btn-light {
-  background-color: #d9e9e8;
-  color: #1a1a1a;
+  background-color: green;
+  color: white;
 }
 
 .btn.btn-light:hover {
-  background-color: #84b8b4;
+  background-color: gray;
 }
 
 .btn.btn-dark {
